@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PublisherDomain;
 
@@ -32,7 +33,7 @@ namespace PublisherData
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-              "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PubDatabase"
+              "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = BookPublisherDB"
             ).LogTo(Console.WriteLine,
                     new[] { DbLoggerCategory.Database.Command.Name },
                     LogLevel.Information)
@@ -42,9 +43,13 @@ namespace PublisherData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            FakeData.Init(100);
             //Add a shadow property to one type
             modelBuilder.Entity<Author>().Property<DateTime>("LastUpdated");
 
+            modelBuilder.Entity<Author>().HasData(FakeData.Authors);
+
+            modelBuilder.Entity<Book>().HasData(FakeData.Books);
             //Add a shadow property to all entity types
             //foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             //{
