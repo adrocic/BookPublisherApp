@@ -50,6 +50,10 @@ namespace PublisherData
             modelBuilder.Entity<Author>().HasData(FakeData.Authors);
 
             modelBuilder.Entity<Book>().HasData(FakeData.Books);
+
+            modelBuilder.Entity<Cover>().HasData(FakeData.Covers);
+            
+            modelBuilder.Entity<Artist>().HasData(FakeData.Artists);
             //Add a shadow property to all entity types
             //foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             //{
