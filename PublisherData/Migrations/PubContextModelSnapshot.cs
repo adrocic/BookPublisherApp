@@ -34,6 +34,8 @@ namespace PublisherData.Migrations
 
                     b.HasIndex("CoversCoverId");
 
+                    b.HasIndex("ArtistsArtistId");
+
                     b.ToTable("ArtistCover");
                 });
 
