@@ -4,6 +4,7 @@
     {
         public Cover()
         {
+            // In this method we are just initializing the Artists so that we can avoid null checks elsewhere in code
             Artists = new List<Artist>();
         }  
         public int CoverId { get; set; }

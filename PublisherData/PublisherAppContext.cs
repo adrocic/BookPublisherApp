@@ -5,9 +5,9 @@ using PublisherDomain;
 
 namespace PublisherData
 {
-    public class PubContext : DbContext
+    public class PublisherAppContext : DbContext
     {
-        public PubContext()
+        public PublisherAppContext()
         {
             SavingChanges += SavingChangesHandler;
         }
@@ -54,7 +54,8 @@ namespace PublisherData
             modelBuilder.Entity<Cover>().HasData(FakeData.Covers);
             
             modelBuilder.Entity<Artist>().HasData(FakeData.Artists);
-            //Add a shadow property to all entity types
+
+             //Add a shadow property to all entity types
             //foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             //{
             //    if (!entityType.IsOwned())
